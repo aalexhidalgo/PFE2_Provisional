@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource PlayerAudioSource;
     private AudioSource CameraAudioSource;
 
+    private Animator PlayerAnimator;
+
     public bool GameOver;
     // Start is called before the first frame update
     void Start()
@@ -26,14 +28,14 @@ public class PlayerController : MonoBehaviour
         PlayerAudioSource = GetComponent<AudioSource>();
         //Accedemos al AudioSource de la Main Camera que recoge la música de fondo
         CameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-
-        //Hasta que no acabe con la oleada de aviones no se empieza a mover
+        //Accedemos a la componente AudioSource del Player que recoge las animaciones
+        PlayerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Movimiento hacia adelante del Player con las teclas arrib, abajo o bien W, S
+        //Movimiento hacia adelante del Player con las teclas arriba, abajo o bien W, S
         VerticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
 
@@ -41,13 +43,12 @@ public class PlayerController : MonoBehaviour
         HorizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * TurnSpeed * Time.deltaTime * HorizontalInput);
 
-
-        //if Planes cross the limits stop spawning
-    }
-
-    //Controlador del proyectil
-    public void OnMouseDown()
-    {
-        Instantiate(ProjectilePrefab, transform.position, gameObject.transform.rotation);
+        //Controlador del proyectil
+        if(Input.GetMouseButtonDown(0))
+        {
+            Instantiate(ProjectilePrefab, transform.position, transform.rotation);
+            //Destroy(EL PROYECTIL AL PASAR 4 SEGUNDOS);
+            PlayerAnimator.SetTrigger("Disparo");
+        }
     }
 }

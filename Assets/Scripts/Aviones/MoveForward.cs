@@ -5,8 +5,8 @@ using UnityEngine;
 public class MoveForward : MonoBehaviour
 {
     public float RandomSpeed;
-    private float MinSpeed = 5f;
-    private float MaxSpeed = 10f;
+    private float MinSpeed = 10f;
+    private float MaxSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,35 +22,36 @@ public class MoveForward : MonoBehaviour
         transform.Translate(Vector3.forward * RandomSpeed * Time.deltaTime);
 
         //Si traspasa el límite los aviones se van destruyendo
+        float ZDestroyLimit = 500f;
+        float YDestroyLimit = 80f;
+        float XDestroyLimit = 22f;
 
-        float DestroyLimit = 100f;
-
-        if (transform.position.x > DestroyLimit)
+        if (transform.position.x > XDestroyLimit)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.y > DestroyLimit)
+        if (transform.position.y > YDestroyLimit)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.z > DestroyLimit)
+        if (transform.position.z > ZDestroyLimit)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.x < -DestroyLimit)
+        if (transform.position.x < -XDestroyLimit)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.y < -DestroyLimit)
+        if (transform.position.y < -YDestroyLimit)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.z < -DestroyLimit)
+        if (transform.position.z < -ZDestroyLimit)
         {
             Destroy(gameObject);
         }

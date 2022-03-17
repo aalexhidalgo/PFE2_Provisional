@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] targetPrefabs;
+    public GameObject PlanePrefab;
 
     //Límites aéreos en los cuales pueden aparecer los aviones
     private float YUpLimit = 80f; 
@@ -16,7 +16,12 @@ public class SpawnManager : MonoBehaviour
 
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;
-
+    void Start()
+    {
+        //Cada cuanto va a spawnearse uno de los aviones
+        InvokeRepeating("SpawnRandomPlane", StartAfterTime, RepeatRate);
+        //Añadir invocar prefabs bombas y ejecutar animación escotillas
+    }
     public Vector3 RandomSpawnPosition()
     {
         //Hacemos random la posición en la cual puede Spawnear según los límites
@@ -35,20 +40,8 @@ public class SpawnManager : MonoBehaviour
         return Quaternion.Euler(Random.Range(-RandomXLimit, RandomXLimit), 270f, Random.Range(-RandomZLimit, RandomZLimit));
     }
 
-    void Start()
-    {
-        //Cada cuanto va a spawnearse uno de los aviones
-        InvokeRepeating("SpawnRandomPlane", StartAfterTime, RepeatRate);
-        //Añadir invocar prefabs bombas y ejecutar animación escotillas
-    }
-    
     public void SpawnRandomPlane()
     {
-        //Lista en caso de añadir más de un tipo de avión
-        int randomIndex = Random.Range(0, targetPrefabs.Length);
-        Instantiate(targetPrefabs[randomIndex],
-            RandomSpawnPosition(), RandomRotationAxis());
+        Instantiate(PlanePrefab, RandomSpawnPosition(), RandomRotationAxis());
     }
-
-    //if the distance between the player and the plane is narrow, the plane opens the cabine and trows the bomb to make damage to the player
 }

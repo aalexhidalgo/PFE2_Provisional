@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource PlayerAudioSource;
     private AudioSource CameraAudioSource;
 
-    private Animator PlayerAnimator;
+    public Animator PlayerAnimator;
 
     public bool GameOver;
 
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         //Posición inicial
         //transform.position = InitialPos;
+        GameOver = false;
         //Accedemos a la componente AudioSource del Player que recoge los efectos de sonido
         PlayerAudioSource = GetComponent<AudioSource>();
         //Accedemos al AudioSource de la Main Camera que recoge la música de fondo

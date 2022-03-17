@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
-    [SerializeField] private float RotationSpeed = 500f;
+    /*[SerializeField] private float RotationSpeed = 500f;
     private float XRotationLimit;
 
     private float MaxRotationLimit= 90f;
@@ -27,9 +27,10 @@ public class RotateCamera : MonoBehaviour
 
 
         //Límites cámara, no puede girarse hacia atrás
-        /*XRotationLimit -= VerticalInputMouse;
+        XRotationLimit -= VerticalInputMouse;
         XRotationLimit = Mathf.Clamp(XRotationLimit, -MaxRotationLimit, MaxRotationLimit);
         transform.localRotation = Quaternion.Euler(XRotationLimit, 0, 0);
-        */
+        
     }
+        */
 }

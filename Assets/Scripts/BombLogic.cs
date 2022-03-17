@@ -28,7 +28,7 @@ public class BombLogic : MonoBehaviour
     void Update()
     {
         //Movimiento constante hacia abajo de la bomba
-        //transform.Translate(Vector3.down * Speed * Time.deltaTime);
+        transform.Translate(Vector3.down * Speed * Time.deltaTime);
 
         //Si la bomba toca el suelo activamos la explosión
         if (transform.position.y < Ground)

@@ -8,6 +8,10 @@ public class PlaneLogic : MonoBehaviour
     private float MinSpeed = 10f;
     private float MaxSpeed = 20f;
 
+    public GameObject BombPrefab;
+
+    private int RandomTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,8 @@ public class PlaneLogic : MonoBehaviour
         float ZDestroyLimit = 500f;
         float YDestroyLimit = 80f;
         float XDestroyLimit = 22f;
+
+        float ZDetonateBomb = 100f;
 
         if (transform.position.x > XDestroyLimit)
         {
@@ -56,6 +62,18 @@ public class PlaneLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        //Instanciar bomba entre 0 a 5segundos (que esté cerca del jugador), abrir compuertas con animación
+        if (transform.position.z == ZDetonateBomb)
+        {
+            StartCoroutine(RandomBombPos());
+        }
+
+    }
+
+    public IEnumerator RandomBombPos()
+    {
+        RandomTime = Random.Range(0, 5);
+        yield return new WaitForSeconds(RandomTime);
+        Instantiate(BombPrefab, transform.position, BombPrefab.transform.rotation);
     }
 }

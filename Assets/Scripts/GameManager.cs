@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
 {
     //Panel GAMEOVER
     public GameObject GameOverPanel;
-    public GameObject HowToPlayPanel;
-    public GameObject MainMenuPanel;
+    
 
     //Opciones MENU
 
@@ -17,26 +16,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Juego");
     }
-    //Configuramos libremente el juego
-    public void HowToPlayButton()
-    {
-        MainMenuPanel.SetActive(false);
-        GameOverPanel.SetActive(false);
-        HowToPlayPanel.SetActive(true);
-    }
 
     //Salimos del juego
     public void ExitButton()
     {
+        Debug.Log("Exit");
         Application.Quit();
-    }
-
-    //Dentro de Options: Para salir de las opciones
-    public void ReturnButton()
-    {
-        HowToPlayPanel.SetActive(false);
-        GameOverPanel.SetActive(false);
-        MainMenuPanel.SetActive(true);
     }
 
     //Recargamos la escena de juego
@@ -47,15 +32,9 @@ public class GameManager : MonoBehaviour
 
     private PlayerController PlayerControllerScript;
 
-    void Start()
-    {
-        PlayerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        MainMenuPanel.SetActive(true);
-    }
-
     void Update()
     {
-        if(!PlayerControllerScript.GameOver)
+        if(PlayerControllerScript.GameOver == true)
         {
             GameOverPanel.SetActive(true);
         }

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float Speed = 2f;
     public float TurnSpeed = 15f;
 
-    private Vector3 InitialPos = new Vector3(-249.119995f, -4.499146f, -4.30000019f);
+    private Vector3 InitialPos = new Vector3(-239.460007f, -3.66000009f, -9.86999989f);
 
     public GameObject ProjectilePrefab;
 
@@ -19,17 +19,20 @@ public class PlayerController : MonoBehaviour
     private Animator PlayerAnimator;
 
     public bool GameOver;
+
+    public int Live = 1500;
     // Start is called before the first frame update
     void Start()
     {
         //Posición inicial
-        transform.position = InitialPos;
+        //transform.position = InitialPos;
         //Accedemos a la componente AudioSource del Player que recoge los efectos de sonido
         PlayerAudioSource = GetComponent<AudioSource>();
         //Accedemos al AudioSource de la Main Camera que recoge la música de fondo
-        CameraAudioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        CameraAudioSource = GameObject.Find("My Cam").GetComponent<AudioSource>();
         //Accedemos a la componente AudioSource del Player que recoge las animaciones
         PlayerAnimator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -44,11 +47,18 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * TurnSpeed * Time.deltaTime * HorizontalInput);
 
         //Controlador del proyectil
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.Space) && !GameOver)
         {
-            Instantiate(ProjectilePrefab, transform.position, transform.rotation);
-            //Destroy(EL PROYECTIL AL PASAR 4 SEGUNDOS);
+            Instantiate(ProjectilePrefab, transform.position , transform.rotation);
             PlayerAnimator.SetTrigger("Disparo");
+        }
+    }
+
+    private void OnTriggerEnter(Collider otherTrigger)
+    {
+        if (otherTrigger.gameObject.CompareTag("Projectile") && otherTrigger.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(otherTrigger.gameObject);
         }
     }
 }

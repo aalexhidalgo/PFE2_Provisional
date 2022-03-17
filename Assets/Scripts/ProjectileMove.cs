@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileMove : MonoBehaviour
 {
     //Velocidad proyectil
-    private float Speed = 70f;
+    private float Speed = 50f;
     void Update()
     {
         //Movimiento constante hacia adelante del Proyectil

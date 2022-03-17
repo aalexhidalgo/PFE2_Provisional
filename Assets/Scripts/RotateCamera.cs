@@ -5,6 +5,9 @@ using UnityEngine;
 public class RotateCamera : MonoBehaviour
 {
     [SerializeField] private float RotationSpeed = 500f;
+    private float XRotationLimit;
+
+    private float MaxRotationLimit= 90f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +25,11 @@ public class RotateCamera : MonoBehaviour
         float VerticalInputMouse = Input.GetAxis("Mouse Y");
         transform.Rotate(Vector3.left, RotationSpeed * Time.deltaTime * VerticalInputMouse);
 
+
+        //Límites cámara, no puede girarse hacia atrás
+        /*XRotationLimit -= VerticalInputMouse;
+        XRotationLimit = Mathf.Clamp(XRotationLimit, -MaxRotationLimit, MaxRotationLimit);
+        transform.localRotation = Quaternion.Euler(XRotationLimit, 0, 0);
+        */
     }
 }

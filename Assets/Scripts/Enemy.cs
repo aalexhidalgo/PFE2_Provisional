@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 Direction = (Player.transform.position - transform.position).normalized;
+        this.transform.position = Player.transform.position;
+
     }
+
+ 
 }

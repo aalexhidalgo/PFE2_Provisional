@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float Speed = 2f;
     public float TurnSpeed = 15f;
 
-    private Vector3 InitialPos = new Vector3(-239.460007f, -3.66000009f, -9.86999989f);
+    private Vector3 InitialPos = new Vector3(-223.580002f, -2.32999992f, -14.3199997f);
 
     public GameObject ProjectilePrefab;
 
@@ -20,7 +20,12 @@ public class PlayerController : MonoBehaviour
 
     public bool GameOver;
 
-    public int Live = 1500;
+    public int Live = 1000;
+
+    private float YRotationLimit;
+    private float MaxYRotationLimit = 45f;
+    private float MinYRotationLimit = 135f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,16 +44,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movimiento hacia adelante del Player con las teclas arriba, abajo o bien W, S
+        //Rotación de la cámara del Player con las teclas arriba, abajo o bien W, S
         VerticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
+        //transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
 
         //Con las teclas izquierda, derecha o bien A o D, controlamos la rotación del Player modificando así su dirección en Z
         HorizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * TurnSpeed * Time.deltaTime * HorizontalInput);
 
+        //Límites del tanque, no puede girarse hacia atrás
+        if (transform.rotation.y > MaxYRotationLimit)
+        {
+            transform.rotation = Quaternion.Euler(0, MaxYRotationLimit, 0);
+        }
+
+        if (transform.rotation.y > MinYRotationLimit)
+        {
+            transform.rotation = Quaternion.Euler(0, MinYRotationLimit, 0);
+        }
+
         //Controlador del proyectil
-        if(Input.GetKeyDown(KeyCode.Space) && !GameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && !GameOver)
         {
             Instantiate(ProjectilePrefab, transform.position , transform.rotation);
             PlayerAnimator.SetTrigger("Disparo");

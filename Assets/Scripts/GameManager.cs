@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
 
     private PlayerController PlayerControllerScript;
 
+    void Start()
+    {
+        PlayerControllerScript = FindObjectOfType<PlayerController>();
+    }
+
     void Update()
     {
         if(PlayerControllerScript.GameOver == true)

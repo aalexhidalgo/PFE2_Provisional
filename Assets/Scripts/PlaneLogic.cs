@@ -17,6 +17,7 @@ public class PlaneLogic : MonoBehaviour
     {
         //Velocidad random a cda avión
         RandomSpeed = Random.Range(MinSpeed, MaxSpeed);
+        StartCoroutine(RandomBombPos());
     }
 
     // Update is called once per frame
@@ -26,53 +27,19 @@ public class PlaneLogic : MonoBehaviour
         transform.Translate(Vector3.forward * RandomSpeed * Time.deltaTime);
 
         //Si traspasa el límite los aviones se van destruyendo
-        float ZDestroyLimit = 500f;
-        float YDestroyLimit = 80f;
-        float XDestroyLimit = 22f;
+        float DestroyLimit = -250f;
 
-        float ZDetonateBomb = 100f;
-
-        if (transform.position.x > XDestroyLimit)
+        if (transform.position.x < DestroyLimit)
         {
             Destroy(gameObject);
-        }
-
-        if (transform.position.y > YDestroyLimit)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.z > ZDestroyLimit)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.x < -XDestroyLimit)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.y < -YDestroyLimit)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.z < -ZDestroyLimit)
-        {
-            Destroy(gameObject);
-        }
-
-        //Instanciar bomba entre 0 a 5segundos (que esté cerca del jugador), abrir compuertas con animación
-        if (transform.position.z == ZDetonateBomb)
-        {
-            StartCoroutine(RandomBombPos());
         }
 
     }
 
+    //Instanciar bomba entre 0 a 3 segundos (que esté cerca del jugador), abrir compuertas con animación
     public IEnumerator RandomBombPos()
     {
-        RandomTime = Random.Range(0, 5);
+        RandomTime = Random.Range(0, 3);
         yield return new WaitForSeconds(RandomTime);
         Instantiate(BombPrefab, transform.position, BombPrefab.transform.rotation);
     }

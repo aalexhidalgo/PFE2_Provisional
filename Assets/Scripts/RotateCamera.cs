@@ -5,9 +5,10 @@ using UnityEngine;
 public class RotateCamera : MonoBehaviour
 {
     /*[SerializeField] private float RotationSpeed = 500f;
-    private float XRotationLimit;
+    private float YRotationLimit;
 
-    private float MaxRotationLimit= 90f;
+    private float MaxYRotationLimit = 45f;
+    private float MinYRotationLimit = 135f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,10 @@ public class RotateCamera : MonoBehaviour
         transform.Rotate(Vector3.left, RotationSpeed * Time.deltaTime * VerticalInputMouse);
 
 
-        //Límites cámara, no puede girarse hacia atrás
-        XRotationLimit -= VerticalInputMouse;
-        XRotationLimit = Mathf.Clamp(XRotationLimit, -MaxRotationLimit, MaxRotationLimit);
-        transform.localRotation = Quaternion.Euler(XRotationLimit, 0, 0);
+        //Límites del tanque, no puede girarse hacia atrás
+        YRotationLimit -= HorizontalInput;
+        YRotationLimit = Mathf.Clamp(YRotationLimit, MinYRotationLimit, MaxYRotationLimit);
+        transform.localRotation = Quaternion.Euler(0, YRotationLimit, 0);
         
     }
         */

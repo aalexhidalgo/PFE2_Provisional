@@ -14,7 +14,7 @@ public class BombLogic : MonoBehaviour
 
     private AudioSource CameraAudioSource;
 
-    public int BombDamage = 50;
+    public int BombDamage = 100;
     private float RandomBombLife;
 
     private PlayerController PlayerControllerScript;

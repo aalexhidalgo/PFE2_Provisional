@@ -7,12 +7,12 @@ public class SpawnManager : MonoBehaviour
     public GameObject PlanePrefab;
 
     //Límites aéreos en los cuales pueden aparecer los aviones
-    private float YUpLimit = 80f; 
-    private float YDownLimit = 60f;
-    private float ZMaxLimit = 20f;
-    private float ZMinLimit = -20f;
-    private float XMinLimit = 60f;
-    private float XMaxLimit = 400f;
+    private float YUpLimit = 40f; 
+    private float YDownLimit = 25f;
+    private float ZMaxLimit = 30f;
+    private float ZMinLimit = -30f;
+    private float XMinLimit = -60f;
+    private float XMaxLimit = -200f;
 
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;

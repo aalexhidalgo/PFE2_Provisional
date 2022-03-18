@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private float HorizontalInput;
     private float VerticalInput;
-    public float Speed = 2f;
-    public float TurnSpeed = 15f;
+    public float Speed = 70f;
+    public float TurnSpeed = 50f;
 
     private Vector3 InitialPos = new Vector3(-223.580002f, -2.32999992f, -14.3199997f);
 
@@ -21,10 +21,6 @@ public class PlayerController : MonoBehaviour
     public bool GameOver;
 
     public int Live = 1000;
-
-    private float YRotationLimit;
-    private float MaxYRotationLimit = 45f;
-    private float MinYRotationLimit = 135f;
 
     private GameObject AtrasPivote;
     private GameObject ProjectilePivote;
@@ -53,7 +49,7 @@ public class PlayerController : MonoBehaviour
         //Rotación de la cámara del Player con las teclas arriba, abajo o bien W, S
         VerticalInput = Input.GetAxis("Vertical");
         //transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
-        AtrasPivote.transform.Rotate(Vector3.left * TurnSpeed * Time.deltaTime * VerticalInput);
+        AtrasPivote.transform.Rotate(Vector3.left * Speed * Time.deltaTime * VerticalInput);
 
         //Con las teclas izquierda, derecha o bien A o D, controlamos la rotación del Player modificando así su dirección en Z
         HorizontalInput = Input.GetAxis("Horizontal");
@@ -73,5 +69,6 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(otherTrigger.gameObject);
         }
+
     }
 }

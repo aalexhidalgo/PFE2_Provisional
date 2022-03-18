@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerControllerScript = FindObjectOfType<PlayerController>();
+        GameOverPanel.SetActive(false);
     }
 
     void Update()

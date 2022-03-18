@@ -5,23 +5,26 @@ using UnityEngine;
 public class BombLogic : MonoBehaviour
 {
     public float Speed = 5f;
-    private float Ground = 0f;
 
     // Añadir audio + sistema de partículas de explosion
 
     public ParticleSystem ExplosionParticleSystem;
     public AudioClip ExplosionAudio;
+    public AudioClip StartExplosionAudio;
 
     private AudioSource CameraAudioSource;
+    public Animator BombAnimator;
 
     public int BombDamage = 100;
     private float RandomBombLife;
+    private float StartDetonation = 8f;
 
     private PlayerController PlayerControllerScript;
 
     void Start()
     {
         PlayerControllerScript = GameObject.Find("Player_modificado_super_final").GetComponent<PlayerController>();
+        BombAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,12 +33,10 @@ public class BombLogic : MonoBehaviour
         //Movimiento constante hacia abajo de la bomba
         transform.Translate(Vector3.down * Speed * Time.deltaTime);
 
-        //Si la bomba toca el suelo activamos la explosión
-        if (transform.position.y < Ground)
+        if (transform.position.y < StartDetonation)
         {
-            //ExplosionParticleSystem.Play();
-            //CameraAudioSource.PlayOneShot(ExplosionAudio, 1);
-            Destroy(gameObject);
+            BombAnimator.SetTrigger("PosicionY");
+            //CameraAudioSource.PlayOneShot(StartExplosionAudio, 1);
         }
     }
 
@@ -63,6 +64,13 @@ public class BombLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //Si la bomba toca el suelo activamos la explosión
+        if (otherTrigger.gameObject.CompareTag("Ground") && !PlayerControllerScript.GameOver)
+        {
+            //ExplosionParticleSystem.Play();
+            //CameraAudioSource.PlayOneShot(ExplosionAudio, 1);
+            Destroy(gameObject);
+        }
     }
 
 }

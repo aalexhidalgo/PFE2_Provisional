@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
+    //UTILIZAR EN EL CANON DEL PLAYER
+
     /*[SerializeField] private float RotationSpeed = 500f;
     private float YRotationLimit;
 

@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private float MaxYRotationLimit = 45f;
     private float MinYRotationLimit = 135f;
 
+    private GameObject AtrasPivote;
+    private GameObject ProjectilePivote;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,9 @@ public class PlayerController : MonoBehaviour
         CameraAudioSource = GameObject.Find("My Cam").GetComponent<AudioSource>();
         //Accedemos a la componente AudioSource del Player que recoge las animaciones
         PlayerAnimator = GetComponent<Animator>();
+        //Accedemos al empty de atrás
+        AtrasPivote = GameObject.Find("Atras");
+        ProjectilePivote = GameObject.Find("Projectile");
 
     }
 
@@ -47,26 +53,16 @@ public class PlayerController : MonoBehaviour
         //Rotación de la cámara del Player con las teclas arriba, abajo o bien W, S
         VerticalInput = Input.GetAxis("Vertical");
         //transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
+        AtrasPivote.transform.Rotate(Vector3.left * TurnSpeed * Time.deltaTime * VerticalInput);
 
         //Con las teclas izquierda, derecha o bien A o D, controlamos la rotación del Player modificando así su dirección en Z
         HorizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * TurnSpeed * Time.deltaTime * HorizontalInput);
 
-        //Límites del tanque, no puede girarse hacia atrás
-        if (transform.rotation.y > MaxYRotationLimit)
-        {
-            transform.rotation = Quaternion.Euler(0, MaxYRotationLimit, 0);
-        }
-
-        if (transform.rotation.y > MinYRotationLimit)
-        {
-            transform.rotation = Quaternion.Euler(0, MinYRotationLimit, 0);
-        }
-
         //Controlador del proyectil
         if (Input.GetKeyDown(KeyCode.Space) && !GameOver)
         {
-            Instantiate(ProjectilePrefab, transform.position , transform.rotation);
+            Instantiate(ProjectilePrefab, ProjectilePivote.transform.position , AtrasPivote.transform.rotation);
             PlayerAnimator.SetTrigger("Disparo");
         }
     }

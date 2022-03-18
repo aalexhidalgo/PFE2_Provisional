@@ -21,7 +21,7 @@ public class BombLogic : MonoBehaviour
 
     void Start()
     {
-        PlayerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        PlayerControllerScript = GameObject.Find("Player_modificado_super_final").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame

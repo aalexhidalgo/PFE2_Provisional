@@ -8,6 +8,7 @@ TagManager:
   - Bomb
   - Projectile
   - Ground
+  - SkyLimit
   layers:
   - Default
   - TransparentFX

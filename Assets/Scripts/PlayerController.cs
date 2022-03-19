@@ -62,13 +62,4 @@ public class PlayerController : MonoBehaviour
             PlayerAnimator.SetTrigger("Disparo");
         }
     }
-
-    private void OnTriggerEnter(Collider otherTrigger)
-    {
-        if (otherTrigger.gameObject.CompareTag("Projectile") && otherTrigger.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(otherTrigger.gameObject);
-        }
-
-    }
 }

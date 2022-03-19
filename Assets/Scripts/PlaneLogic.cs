@@ -17,7 +17,6 @@ public class PlaneLogic : MonoBehaviour
     {
         //Velocidad random a cda avión
         RandomSpeed = Random.Range(MinSpeed, MaxSpeed);
-        StartCoroutine(RandomBombPos());
     }
 
     // Update is called once per frame
@@ -42,5 +41,20 @@ public class PlaneLogic : MonoBehaviour
         RandomTime = Random.Range(0, 3);
         yield return new WaitForSeconds(RandomTime);
         Instantiate(BombPrefab, transform.position, BombPrefab.transform.rotation);
+    }
+
+    private void OnCollisionEnter(Collision otherCollider)
+    {
+        if (otherCollider.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+            Destroy(otherCollider.gameObject);
+        }
+
+        if (otherCollider.gameObject.CompareTag("SkyLimit"))
+        {
+            Debug.Log("Funciono");
+            StartCoroutine(RandomBombPos());
+        }
     }
 }

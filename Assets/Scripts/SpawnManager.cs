@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     private float YDownLimit = 25f;
     private float ZMaxLimit = 30f;
     private float ZMinLimit = -30f;
-    private float XStartPos = 250f;
+    private float XStartPos = 0f;
 
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;

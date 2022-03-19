@@ -8,6 +8,9 @@ public class PlaneLogic : MonoBehaviour
     private float MinSpeed = 10f;
     private float MaxSpeed = 20f;
 
+    public AudioClip PlaneClip;
+    private AudioSource PlayerAudioSource;
+
     public GameObject BombPrefab;
 
     private int RandomTime;
@@ -17,6 +20,10 @@ public class PlaneLogic : MonoBehaviour
     {
         //Velocidad random a cda avión
         RandomSpeed = Random.Range(MinSpeed, MaxSpeed);
+        //Accedemos al Audiosource del Player
+        PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        PlayerAudioSource.PlayOneShot(PlaneClip, 0.02f);
+
     }
 
     // Update is called once per frame

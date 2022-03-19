@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1181690457874014639}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -3.39, y: -0.047945663, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0231142, y: 2.0231142, z: 2.0231142}
   m_Children:
   - {fileID: 5588278450895013934}
   - {fileID: 3342843943473481647}
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomSpeed: 0
+  PlaneClip: {fileID: 8300000, guid: 2383993059f5ca7438a13264c6c5c8b1, type: 3}
   BombPrefab: {fileID: 1098318907123292, guid: 34a5e34bd888e0b4883bb80aa3cd437d, type: 3}
 --- !u!65 &3811328178675712601
 BoxCollider:

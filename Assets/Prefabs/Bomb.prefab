@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  ExplosionParticleSystem: {fileID: 0}
-  ExplosionAudio: {fileID: 0}
-  StartExplosionAudio: {fileID: 0}
+  BigExplosionParticleSystem: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  SmallExplosionParticleSystem: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
+  ExplosionAudio: {fileID: 8300000, guid: 36ef7a9b078653143b476266515bbc4b, type: 3}
   BombAnimator: {fileID: 8118668947015903416}
   BombDamage: 50
 --- !u!65 &2219637156847763476

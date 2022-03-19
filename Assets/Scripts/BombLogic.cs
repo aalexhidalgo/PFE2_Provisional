@@ -8,11 +8,11 @@ public class BombLogic : MonoBehaviour
 
     // Añadir audio + sistema de partículas de explosion
 
-    public ParticleSystem ExplosionParticleSystem;
+    public ParticleSystem BigExplosionParticleSystem;
+    public ParticleSystem SmallExplosionParticleSystem;
     public AudioClip ExplosionAudio;
-    public AudioClip StartExplosionAudio;
 
-    private AudioSource CameraAudioSource;
+    private AudioSource PlayerAudioSource;
     public Animator BombAnimator;
 
     public int BombDamage = 100;
@@ -23,8 +23,10 @@ public class BombLogic : MonoBehaviour
 
     void Start()
     {
-        PlayerControllerScript = GameObject.Find("Player_modificado_super_final").GetComponent<PlayerController>();
+        PlayerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         BombAnimator = GetComponent<Animator>();
+
+        PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,7 +38,6 @@ public class BombLogic : MonoBehaviour
         if (transform.position.y < StartDetonation)
         {
             BombAnimator.SetTrigger("PosicionY");
-            //CameraAudioSource.PlayOneShot(StartExplosionAudio, 1);
         }
     }
 
@@ -62,13 +63,15 @@ public class BombLogic : MonoBehaviour
         {
             Debug.Log($"Bravo, la has destruido");
             Destroy(gameObject);
+            Destroy(otherTrigger.gameObject);
         }
 
         //Si la bomba toca el suelo activamos la explosión
         if (otherTrigger.gameObject.CompareTag("Ground") && !PlayerControllerScript.GameOver)
         {
-            //ExplosionParticleSystem.Play();
-            //CameraAudioSource.PlayOneShot(ExplosionAudio, 1);
+            Instantiate(BigExplosionParticleSystem, transform.position, BigExplosionParticleSystem.transform.rotation);
+            BigExplosionParticleSystem.Play();
+            PlayerAudioSource.PlayOneShot(ExplosionAudio, 0.1f);
             Destroy(gameObject);
         }
     }

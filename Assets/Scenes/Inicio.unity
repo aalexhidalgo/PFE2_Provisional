@@ -681,6 +681,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 333020736033588263}
+    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_text
+      value: 'WARCITY:
+
+        The Final Episode'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6487458722318669980, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

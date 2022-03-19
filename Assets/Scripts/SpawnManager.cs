@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     //Límites de rotación del avión
-    private float RandomXLimit = 10f;
+    private float RandomXLimit = 5f;
     private float RandomZLimit = 10f;
 
     private Quaternion RandomRotationAxis()

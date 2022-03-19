@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource PlayerAudioSource;
     private AudioSource CameraAudioSource;
+    public AudioClip ShootProjectile;
 
     public Animator PlayerAnimator;
 
@@ -58,8 +59,9 @@ public class PlayerController : MonoBehaviour
         //Controlador del proyectil
         if (Input.GetKeyDown(KeyCode.Space) && !GameOver)
         {
-            Instantiate(ProjectilePrefab, ProjectilePivote.transform.position , AtrasPivote.transform.rotation);
-            PlayerAnimator.SetTrigger("Disparo");
+           Instantiate(ProjectilePrefab, ProjectilePivote.transform.position , AtrasPivote.transform.rotation);
+           PlayerAudioSource.PlayOneShot(ShootProjectile, 0.2f);
+           PlayerAnimator.SetTrigger("Disparo");
         }
     }
 }

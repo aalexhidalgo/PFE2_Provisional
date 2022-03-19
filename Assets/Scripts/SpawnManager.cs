@@ -11,8 +11,7 @@ public class SpawnManager : MonoBehaviour
     private float YDownLimit = 25f;
     private float ZMaxLimit = 30f;
     private float ZMinLimit = -30f;
-    private float XMinLimit = -60f;
-    private float XMaxLimit = -200f;
+    private float XStartPos = 250f;
 
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;
@@ -25,10 +24,9 @@ public class SpawnManager : MonoBehaviour
     public Vector3 RandomSpawnPosition()
     {
         //Hacemos random la posición en la cual puede Spawnear según los límites
-        float RandomSpawnPosX = Random.Range(XMinLimit, XMaxLimit);
         float RandomSpawnPosY = Random.Range(YDownLimit, YUpLimit);
         float RandomSpawnPosZ = Random.Range(ZMinLimit, ZMaxLimit);
-        return new Vector3(RandomSpawnPosX, RandomSpawnPosY, RandomSpawnPosZ);
+        return new Vector3(XStartPos, RandomSpawnPosY, RandomSpawnPosZ);
     }
 
     //Límites de rotación del avión

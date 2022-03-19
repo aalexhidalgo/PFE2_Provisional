@@ -36,7 +36,7 @@ public class PlaneLogic : MonoBehaviour
 
     }
 
-    //Instanciar bomba entre 0 a 3 segundos (que esté cerca del jugador), abrir compuertas con animación
+    //Instanciar bomba entre 0 a 3 segundos (que esté cerca del jugador)
     public IEnumerator RandomBombPos()
     {
         RandomTime = Random.Range(0, 3);

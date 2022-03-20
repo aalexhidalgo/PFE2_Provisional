@@ -57,7 +57,7 @@ public class PlaneLogic : MonoBehaviour
     {
         if (otherCollider.gameObject.CompareTag("Projectile"))
         {
-            PlayerControllerScript.PlaneCounter++;
+            PlayerControllerScript.PlaneCounter -= 1;
             Destroy(gameObject);
             Destroy(otherCollider.gameObject);
         }

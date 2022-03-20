@@ -8,8 +8,8 @@ public class BombLogic : MonoBehaviour
 
     // Añadir audio + sistema de partículas de explosion
 
-    public ParticleSystem BigExplosionParticleSystem;
-    public ParticleSystem SmallExplosionParticleSystem;
+    public ParticleSystem[] ExplosionParticleSystem;
+    private ParticleSystem Explosion;
     public AudioClip ExplosionAudio;
 
     private AudioSource PlayerAudioSource;
@@ -47,7 +47,7 @@ public class BombLogic : MonoBehaviour
         //Si conseguimos acertar la bomba con el proyectil, esta se destruye
         if (otherTrigger.gameObject.CompareTag("Projectile") && !PlayerControllerScript.GameOver)
         {
-            PlayerControllerScript.BombCounter++;
+            PlayerControllerScript.BombCounter-= 1;
             Debug.Log($"Bravo, la has destruido");
             Destroy(gameObject);
             Destroy(otherTrigger.gameObject);
@@ -57,8 +57,9 @@ public class BombLogic : MonoBehaviour
         if (otherTrigger.gameObject.CompareTag("Ground") && !PlayerControllerScript.GameOver)
         {
             PlayerControllerScript.BombDamage -= 1;
-            Instantiate(BigExplosionParticleSystem, transform.position, BigExplosionParticleSystem.transform.rotation);
-            BigExplosionParticleSystem.Play();
+            int RandomIndex = Random.Range(0, 2);
+            Explosion = Instantiate(ExplosionParticleSystem[RandomIndex], transform.position, ExplosionParticleSystem[RandomIndex].transform.rotation);
+            Explosion.Play();
             PlayerAudioSource.PlayOneShot(ExplosionAudio, 0.1f);
             Destroy(gameObject);
 

@@ -500,6 +500,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 1930113250119785544, guid: 6cf8bcb44634e6047bdc049e01e9a373, type: 3}
   WinPanel: {fileID: 8974637813644262209, guid: c1f1dba9a1560244199e2bb297526c9a, type: 3}
+  GamePanel: {fileID: 3080758794700295052, guid: 7c4aa37bbea9b0b45b102a41158bdf2c, type: 3}
+  Life: {fileID: 0}
+  Aviones: {fileID: 0}
+  Bombas: {fileID: 0}
 --- !u!1001 &664087730357199900
 PrefabInstance:
   m_ObjectHideFlags: 0

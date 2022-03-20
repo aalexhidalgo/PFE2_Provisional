@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomSpeed: 0
+  PlaneClip: {fileID: 0}
   BombPrefab: {fileID: 0}
 --- !u!1 &1607952946
 GameObject:

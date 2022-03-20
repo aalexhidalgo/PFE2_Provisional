@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     //Panel GAMEOVER
     public GameObject GameOverPanel;
-    //PanelWin
+    //Panel WIN
     public GameObject WinPanel;
+    //Panel de JUEGO
+    public GameObject GamePanel;
+
+    public TextMeshProUGUI Life;
+    public TextMeshProUGUI Aviones;
+    public TextMeshProUGUI Bombas;
 
     //Opciones MENU
 
@@ -36,19 +43,37 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerControllerScript = FindObjectOfType<PlayerController>();
+        GamePanel.SetActive(true);
         GameOverPanel.SetActive(false);
         WinPanel.SetActive(false);
+
     }
 
     void Update()
     {
-        if(PlayerControllerScript.GameOver)
+        Life.text = $"{PlayerControllerScript.BombDamage}";
+        Aviones.text = $"{PlayerControllerScript.PlaneCounter}";
+        Bombas.text = $"{PlayerControllerScript.BombCounter}";
+
+        if (PlayerControllerScript.PlaneCounter <= 0)
         {
-            GameOverPanel.SetActive(true);
+            Aviones.text = "0";
+        }
+
+        if (PlayerControllerScript.BombCounter <= 0)
+        {
+            Bombas.text = "0";
+        }
+
+        if (PlayerControllerScript.GameOver)
+        {
+            GamePanel.SetActive(false);
+            GameOverPanel.SetActive(true);   
         }
 
         if(PlayerControllerScript.Win)
         {
+            GamePanel.SetActive(false);
             WinPanel.SetActive(true);
         }
     }

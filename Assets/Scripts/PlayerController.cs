@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     public bool GameOver;
 
     public int BombDamage = 5;
-    public int BombCounter;
-    public int PlaneCounter;
+    public int BombCounter = 50;
+    public int PlaneCounter = 30;
 
     private GameObject AtrasPivote;
     private GameObject ProjectilePivote;
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
            PlayerAnimator.SetTrigger("Disparo");
         }
 
-        if (BombCounter >= 50 && PlaneCounter >= 30)
+        if (BombCounter <= 0 && PlaneCounter <= 0)
         {
             Win = true;
         }
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
         if (Win || GameOver)
         {
             PlayerAudioSource.Stop();
+            CameraAudioSource.Stop();
         }
     }
 }

@@ -15,11 +15,15 @@ public class SpawnManager : MonoBehaviour
 
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;
+
+    private PlayerController PlayerControllerScript;
+
     void Start()
     {
         //Cada cuanto va a spawnearse uno de los aviones
         InvokeRepeating("SpawnRandomPlane", StartAfterTime, RepeatRate);
-        //Añadir invocar prefabs bombas y ejecutar animación escotillas
+        //Accedemos al PlayerController del jugador 
+        PlayerControllerScript = FindObjectOfType<PlayerController>();
     }
     public Vector3 RandomSpawnPosition()
     {
@@ -41,5 +45,19 @@ public class SpawnManager : MonoBehaviour
     public void SpawnRandomPlane()
     {
         Instantiate(PlanePrefab, RandomSpawnPosition(), RandomRotationAxis());
+    }
+
+    void Update()
+    {
+        if(PlayerControllerScript.GameOver == true)
+        {
+            CancelInvoke("SpawnRandomPlane");
+        }
+
+        if (PlayerControllerScript.Win == true)
+        {
+            CancelInvoke("SpawnRandomPlane");
+        }
+
     }
 }

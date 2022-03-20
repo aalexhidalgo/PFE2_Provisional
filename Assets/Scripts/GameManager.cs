@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     //Panel GAMEOVER
     public GameObject GameOverPanel;
-    
+    //PanelWin
+    public GameObject WinPanel;
 
     //Opciones MENU
 
@@ -36,13 +37,19 @@ public class GameManager : MonoBehaviour
     {
         PlayerControllerScript = FindObjectOfType<PlayerController>();
         GameOverPanel.SetActive(false);
+        WinPanel.SetActive(false);
     }
 
     void Update()
     {
-        if(PlayerControllerScript.GameOver == true)
+        if(PlayerControllerScript.GameOver)
         {
             GameOverPanel.SetActive(true);
+        }
+
+        if(PlayerControllerScript.Win)
+        {
+            WinPanel.SetActive(true);
         }
     }
 

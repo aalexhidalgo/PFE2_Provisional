@@ -15,11 +15,15 @@ public class PlaneLogic : MonoBehaviour
 
     private int RandomTime;
 
+    private PlayerController PlayerControllerScript;
+
     // Start is called before the first frame update
     void Start()
     {
         //Velocidad random a cda avión
         RandomSpeed = Random.Range(MinSpeed, MaxSpeed);
+        //Accedemos al PlayerController del jugador
+        PlayerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         //Accedemos al Audiosource del Player
         PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
         PlayerAudioSource.PlayOneShot(PlaneClip, 0.02f);
@@ -39,7 +43,6 @@ public class PlaneLogic : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     //Instanciar bomba entre 0 a 3 segundos (que esté cerca del jugador)
@@ -54,13 +57,13 @@ public class PlaneLogic : MonoBehaviour
     {
         if (otherCollider.gameObject.CompareTag("Projectile"))
         {
+            PlayerControllerScript.PlaneCounter++;
             Destroy(gameObject);
             Destroy(otherCollider.gameObject);
         }
 
-        if (otherCollider.gameObject.CompareTag("SkyLimit"))
+        if (otherCollider.gameObject.CompareTag("SkyLimit") && !PlayerControllerScript.GameOver && !PlayerControllerScript.Win)
         {
-            Debug.Log("Funciono");
             StartCoroutine(RandomBombPos());
         }
     }

@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 1930113250119785544, guid: 6cf8bcb44634e6047bdc049e01e9a373, type: 3}
+  WinPanel: {fileID: 8974637813644262209, guid: c1f1dba9a1560244199e2bb297526c9a, type: 3}
 --- !u!1001 &664087730357199900
 PrefabInstance:
   m_ObjectHideFlags: 0

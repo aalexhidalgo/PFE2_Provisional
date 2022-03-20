@@ -15,7 +15,6 @@ public class BombLogic : MonoBehaviour
     private AudioSource PlayerAudioSource;
     public Animator BombAnimator;
 
-    public int BombDamage = 100;
     private float RandomBombLife;
     private float StartDetonation = 8f;
 
@@ -44,23 +43,11 @@ public class BombLogic : MonoBehaviour
     //Si la bomba toca al jugador explota y perdemos el juego
     private void OnTriggerEnter(Collider otherTrigger)
     {
-        if (otherTrigger.gameObject.CompareTag("Player") && !PlayerControllerScript.GameOver)
-        {
-            PlayerControllerScript.Live -= BombDamage;
-            Debug.Log($"Tienes {PlayerControllerScript.Live} de vida, ouuuuch!");
-            Destroy(gameObject);
-
-            if (PlayerControllerScript.Live == 0)
-            {
-                Debug.Log($"GAME OVER");
-                Destroy(gameObject);
-                PlayerControllerScript.GameOver = true;
-            }
-        }
 
         //Si conseguimos acertar la bomba con el proyectil, esta se destruye
         if (otherTrigger.gameObject.CompareTag("Projectile") && !PlayerControllerScript.GameOver)
         {
+            PlayerControllerScript.BombCounter++;
             Debug.Log($"Bravo, la has destruido");
             Destroy(gameObject);
             Destroy(otherTrigger.gameObject);
@@ -69,10 +56,19 @@ public class BombLogic : MonoBehaviour
         //Si la bomba toca el suelo activamos la explosión
         if (otherTrigger.gameObject.CompareTag("Ground") && !PlayerControllerScript.GameOver)
         {
+            PlayerControllerScript.BombDamage -= 1;
             Instantiate(BigExplosionParticleSystem, transform.position, BigExplosionParticleSystem.transform.rotation);
             BigExplosionParticleSystem.Play();
             PlayerAudioSource.PlayOneShot(ExplosionAudio, 0.1f);
             Destroy(gameObject);
+
+            //Si caen 5 bombas, hemos perdido
+            if (PlayerControllerScript.BombDamage == 0)
+            {
+                Debug.Log($"GAME OVER");
+                Destroy(gameObject);
+                PlayerControllerScript.GameOver = true;
+            }
         }
     }
 

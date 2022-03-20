@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float Speed = 70f;
     public float TurnSpeed = 50f;
 
-    private Vector3 InitialPos = new Vector3(-223.580002f, -2.32999992f, -14.3199997f);
+    private Vector3 InitialPos = new Vector3(-229.939362f, 1.39999998f, -7.5999999f);
 
     public GameObject ProjectilePrefab;
 
@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour
 
     public Animator PlayerAnimator;
 
+    public bool Win;
     public bool GameOver;
 
-    public int Live = 1000;
+    public int BombDamage = 5;
+    public int BombCounter;
+    public int PlaneCounter;
 
     private GameObject AtrasPivote;
     private GameObject ProjectilePivote;
@@ -30,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //Posición inicial
-        //transform.position = InitialPos;
+        transform.position = InitialPos;
         GameOver = false;
         //Accedemos a la componente AudioSource del Player que recoge los efectos de sonido
         PlayerAudioSource = GetComponent<AudioSource>();
@@ -57,11 +60,21 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * TurnSpeed * Time.deltaTime * HorizontalInput);
 
         //Controlador del proyectil
-        if (Input.GetKeyDown(KeyCode.Space) && !GameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && !GameOver && !Win)
         {
            Instantiate(ProjectilePrefab, ProjectilePivote.transform.position , AtrasPivote.transform.rotation);
            PlayerAudioSource.PlayOneShot(ShootProjectile, 0.2f);
            PlayerAnimator.SetTrigger("Disparo");
+        }
+
+        if (BombCounter >= 50 && PlaneCounter >= 30)
+        {
+            Win = true;
+        }
+
+        if (Win || GameOver)
+        {
+            PlayerAudioSource.Stop();
         }
     }
 }

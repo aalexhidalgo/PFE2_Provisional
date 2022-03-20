@@ -512,60 +512,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 943070553}
     m_Modifications:
     - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1690153905}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1762733282}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 664087729838096090, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 664087730952558509, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
       propertyPath: m_Name
       value: HowToPlayPanel
       objectReference: {fileID: 0}
     - target: {fileID: 664087730952558509, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 664087730952558510, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
       propertyPath: m_Pivot.x
@@ -674,6 +630,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 943070553}
     m_Modifications:
+    - target: {fileID: 5861052877428566543, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_Name
+      value: Subtitle
+      objectReference: {fileID: 0}
     - target: {fileID: 6487458720382174877, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -686,23 +646,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 333020736033588263}
-    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
-      propertyPath: m_text
-      value: 'WARCITY:
-
-        The Final Episode'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
-      propertyPath: m_fontSize
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6487458721325292436, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
+    - target: {fileID: 6487458721325292438, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
+      propertyPath: m_Name
+      value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 6487458722318669980, guid: ac9c63c69e57fc645b3ab0aba17d4bdd, type: 3}
       propertyPath: m_Pivot.x

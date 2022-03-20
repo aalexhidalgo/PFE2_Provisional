@@ -4836,12 +4836,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4f5a08bfec45545b6ea35a0617775e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  TurnSpeed: 30
+  Speed: 60
+  TurnSpeed: 50
   ProjectilePrefab: {fileID: 1790963549268745127, guid: c590bff67ae217f4b9f15fc527a8e8dd, type: 3}
+  ShootProjectile: {fileID: 8300000, guid: f30bfcb294ac3144bb1e40205c727c8d, type: 3}
   PlayerAnimator: {fileID: 3894289165422973443}
+  Win: 0
   GameOver: 0
-  Live: 1000
+  BombDamage: 5
+  BombCounter: 50
+  PlaneCounter: 30
 --- !u!82 &3894289165422973442
 AudioSource:
   m_ObjectHideFlags: 0

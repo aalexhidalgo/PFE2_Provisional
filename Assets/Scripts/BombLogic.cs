@@ -16,7 +16,6 @@ public class BombLogic : MonoBehaviour
     public Animator BombAnimator;
 
     private float RandomBombLife;
-    private float StartDetonation = 8f;
 
     private PlayerController PlayerControllerScript;
 
@@ -26,6 +25,7 @@ public class BombLogic : MonoBehaviour
         BombAnimator = GetComponent<Animator>();
 
         PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        BombAnimator.SetTrigger("PosicionY");
     }
 
     // Update is called once per frame
@@ -33,11 +33,6 @@ public class BombLogic : MonoBehaviour
     {
         //Movimiento constante hacia abajo de la bomba
         transform.Translate(Vector3.down * Speed * Time.deltaTime);
-
-        if (transform.position.y < StartDetonation)
-        {
-            BombAnimator.SetTrigger("PosicionY");
-        }
     }
 
     //Si la bomba toca al jugador explota y perdemos el juego

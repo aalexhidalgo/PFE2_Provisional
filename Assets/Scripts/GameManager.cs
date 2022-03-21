@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI Aviones;
     public TextMeshProUGUI Bombas;
 
-    private AudioSource PlayerAudioSource;
+    private AudioSource GameManagerAudioSource;
     public AudioClip GameOverClip;
     public AudioClip WinClip;
     //Opciones MENU
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerControllerScript = FindObjectOfType<PlayerController>();
-        PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        GameManagerAudioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
         GamePanel.SetActive(true);
         GameOverPanel.SetActive(false);
         WinPanel.SetActive(false);
@@ -73,14 +73,14 @@ public class GameManager : MonoBehaviour
         {
             GamePanel.SetActive(false);
             GameOverPanel.SetActive(true);
-            PlayerAudioSource.PlayOneShot(GameOverClip, 1f);
+            GameManagerAudioSource.PlayOneShot(GameOverClip, 0.5f);
         }
 
         if(PlayerControllerScript.Win)
         {
             GamePanel.SetActive(false);
             WinPanel.SetActive(true);
-            PlayerAudioSource.PlayOneShot(WinClip, 1f);
+            GameManagerAudioSource.PlayOneShot(WinClip, 0.5f);
         }
     }
 

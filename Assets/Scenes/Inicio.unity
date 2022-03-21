@@ -504,6 +504,8 @@ MonoBehaviour:
   Life: {fileID: 0}
   Aviones: {fileID: 0}
   Bombas: {fileID: 0}
+  GameOverClip: {fileID: 0}
+  WinClip: {fileID: 0}
 --- !u!1001 &664087730357199900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -780,7 +782,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

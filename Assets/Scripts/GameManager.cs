@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI Aviones;
     public TextMeshProUGUI Bombas;
 
+    private AudioSource PlayerAudioSource;
+    public AudioClip GameOverClip;
+    public AudioClip WinClip;
     //Opciones MENU
 
     //Iniciamos el juego y pasamos a la escena que toca
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerControllerScript = FindObjectOfType<PlayerController>();
+        PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
         GamePanel.SetActive(true);
         GameOverPanel.SetActive(false);
         WinPanel.SetActive(false);
@@ -68,13 +72,15 @@ public class GameManager : MonoBehaviour
         if (PlayerControllerScript.GameOver)
         {
             GamePanel.SetActive(false);
-            GameOverPanel.SetActive(true);   
+            GameOverPanel.SetActive(true);
+            PlayerAudioSource.PlayOneShot(GameOverClip, 1f);
         }
 
         if(PlayerControllerScript.Win)
         {
             GamePanel.SetActive(false);
             WinPanel.SetActive(true);
+            PlayerAudioSource.PlayOneShot(WinClip, 1f);
         }
     }
 

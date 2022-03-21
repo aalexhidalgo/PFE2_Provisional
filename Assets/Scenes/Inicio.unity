@@ -515,6 +515,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1762733282}
+    - target: {fileID: 664087729865727174, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
+      propertyPath: m_Name
+      value: W
+      objectReference: {fileID: 0}
     - target: {fileID: 664087730952558509, guid: 4cbf1007fac318c409314b7850c20cb2, type: 3}
       propertyPath: m_Name
       value: HowToPlayPanel
@@ -772,7 +776,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c26bfc2274ffbf84ca17c30b4b5b689e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

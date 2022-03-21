@@ -16,18 +16,20 @@ public class SpawnManager : MonoBehaviour
     private float StartAfterTime = 1f;
     private float RepeatRate = 2f;
 
+    //Variables del PlayerController
     private PlayerController PlayerControllerScript;
 
     void Start()
     {
-        //Cada cuanto va a spawnearse uno de los aviones
+        //Cuando se va a spawnear el primer avión y en que frecuencia se van a spawnear el resto
         InvokeRepeating("SpawnRandomPlane", StartAfterTime, RepeatRate);
         //Accedemos al PlayerController del jugador 
         PlayerControllerScript = FindObjectOfType<PlayerController>();
     }
+
+    //Hacemos random la posición en la cual pueden spawnear según los límites aéreos
     public Vector3 RandomSpawnPosition()
     {
-        //Hacemos random la posición en la cual puede Spawnear según los límites
         float RandomSpawnPosY = Random.Range(YDownLimit, YUpLimit);
         float RandomSpawnPosZ = Random.Range(ZMinLimit, ZMaxLimit);
         return new Vector3(XStartPos, RandomSpawnPosY, RandomSpawnPosZ);
@@ -37,11 +39,13 @@ public class SpawnManager : MonoBehaviour
     private float RandomXLimit = 5f;
     private float RandomZLimit = 10f;
 
+    //Hacemos random la rotación en la cual pueden spawnear según los límites de rotación
     private Quaternion RandomRotationAxis()
     {
         return Quaternion.Euler(Random.Range(-RandomXLimit, RandomXLimit), 270f, Random.Range(-RandomZLimit, RandomZLimit));
     }
 
+    //Le enchufamos al invoke el avión a instanciar, la posición random y la rotación random
     public void SpawnRandomPlane()
     {
         Instantiate(PlanePrefab, RandomSpawnPosition(), RandomRotationAxis());
@@ -49,6 +53,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
+        //Tanto si hemos ganado como si hemos perdido cancelamos el invoke con tal de que no aparezcan más aviones en escena
         if(PlayerControllerScript.GameOver == true)
         {
             CancelInvoke("SpawnRandomPlane");

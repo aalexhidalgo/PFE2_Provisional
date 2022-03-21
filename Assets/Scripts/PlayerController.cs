@@ -4,30 +4,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Controlador principal del Player (ejes y velocidades)
     private float HorizontalInput;
     private float VerticalInput;
-    public float Speed = 70f;
-    public float TurnSpeed = 50f;
-
+    private GameObject AtrasPivote;
+    private float Speed = 60f;
+    private float TurnSpeed = 50f;
+    
+    //Posición inicial
     private Vector3 InitialPos = new Vector3(-229.939362f, 1.39999998f, -7.5999999f);
 
+    //Proyectil
     public GameObject ProjectilePrefab;
+    private GameObject ProjectilePivote;
 
+    //Recursos de Sonido del Player
     private AudioSource PlayerAudioSource;
     private AudioSource CameraAudioSource;
     public AudioClip ShootProjectile;
 
+    //Motor de animación del Player
     public Animator PlayerAnimator;
 
+    //Fin del juego, puedes ganar o perder
     public bool Win;
     public bool GameOver;
 
-    public int BombDamage = 5;
+    //Contadores que afectan al Player
+    public int LifeCounter = 5;
     public int BombCounter = 50;
     public int PlaneCounter = 30;
-
-    private GameObject AtrasPivote;
-    private GameObject ProjectilePivote;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour
         PlayerAnimator = GetComponent<Animator>();
         //Accedemos al empty de atrás
         AtrasPivote = GameObject.Find("Atras");
+        //Accedemos al empty de la punta
         ProjectilePivote = GameObject.Find("Projectile");
 
     }
@@ -50,9 +57,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Rotación de la cámara del Player con las teclas arriba, abajo o bien W, S
+        //Rotación del cañón del Player con las teclas arriba, abajo o bien W, S
         VerticalInput = Input.GetAxis("Vertical");
-        //transform.Translate(Vector3.forward * Speed * Time.deltaTime * VerticalInput);
         AtrasPivote.transform.Rotate(Vector3.left * Speed * Time.deltaTime * VerticalInput);
 
         //Con las teclas izquierda, derecha o bien A o D, controlamos la rotación del Player modificando así su dirección en Z
@@ -67,11 +73,13 @@ public class PlayerController : MonoBehaviour
            PlayerAnimator.SetTrigger("Disparo");
         }
 
+        //Si los contadores de las bombas y los aviones llegan a 0 hemos ganado el juego
         if (BombCounter <= 0 && PlaneCounter <= 0)
         {
             Win = true;
         }
 
+        //Si ganamos o perdemos paralizamos los efectos de so
         if (Win || GameOver)
         {
             PlayerAudioSource.Stop();

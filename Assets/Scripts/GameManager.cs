@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     //Opciones MENU
 
-    //Iniciamos el juego y pasamos a la escena que toca
+    //Iniciamos el juego y pasamos a la escena de juego
     public void StartButton()
     {
         SceneManager.LoadScene("Juego");
@@ -39,10 +39,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Juego");
     }
 
+    //Variables del PlayerController
     private PlayerController PlayerControllerScript;
 
     void Start()
     {
+        //Accedemos al PlayerController y activamos el panel de juego
         PlayerControllerScript = FindObjectOfType<PlayerController>();
         GamePanel.SetActive(true);
         GameOverPanel.SetActive(false);
@@ -52,10 +54,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Life.text = $"{PlayerControllerScript.BombDamage}";
+        //Los contadores se irán actualizando a medida que el jugador vaya cumpliendo las condiciones
+        Life.text = $"{PlayerControllerScript.LifeCounter}";
         Aviones.text = $"{PlayerControllerScript.PlaneCounter}";
         Bombas.text = $"{PlayerControllerScript.BombCounter}";
 
+        //Si los contadores de las bombas o los aviones llegan a 0, sobreescribimos el texto para evitar valores negativos
         if (PlayerControllerScript.PlaneCounter <= 0)
         {
             Aviones.text = "0";
@@ -66,12 +70,14 @@ public class GameManager : MonoBehaviour
             Bombas.text = "0";
         }
 
+        //Si el jugador muere activamos el panel de GAMEOVER
         if (PlayerControllerScript.GameOver)
         {
             GamePanel.SetActive(false);
             GameOverPanel.SetActive(true);
         }
 
+        //Si el jugador gana activamos el panel de WIN
         if(PlayerControllerScript.Win)
         {
             GamePanel.SetActive(false);

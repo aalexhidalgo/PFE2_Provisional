@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class BombLogic : MonoBehaviour
 {
-    public float Speed = 5f;
+    //Velocidad de caída
+    private float Speed = 5f;
 
-    // Añadir audio + sistema de partículas de explosion
-
+    //Sistemas de partículas
     public ParticleSystem[] ExplosionParticleSystem;
     private ParticleSystem Explosion;
+    
+    //Recursos de sonido de la bomba
+    private AudioSource PlayerAudioSource;
     public AudioClip ExplosionAudio;
 
-    private AudioSource PlayerAudioSource;
+    //Motor de animación de la bomba
     public Animator BombAnimator;
 
-    private float RandomBombLife;
-
+    //Variables del PlayerController
     private PlayerController PlayerControllerScript;
 
     void Start()
     {
+        //Accedemos a la componente Player Controller y al AudioSource del Player que recoge los efectos de sonido
         PlayerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        BombAnimator = GetComponent<Animator>();
-
         PlayerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+
+        //Desde el principio ejecutamos una animación, como si estuviese apunto de detonarse
+        BombAnimator = GetComponent<Animator>();
         BombAnimator.SetTrigger("PosicionY");
     }
 
@@ -39,29 +43,32 @@ public class BombLogic : MonoBehaviour
     private void OnTriggerEnter(Collider otherTrigger)
     {
 
-        //Si conseguimos acertar la bomba con el proyectil, esta se destruye
+        //Si conseguimos acertar la bomba con el proyectil, esta y el proyectil se destruyen
         if (otherTrigger.gameObject.CompareTag("Projectile") && !PlayerControllerScript.GameOver)
         {
+            //Restamos 1 al contador de bombas
             PlayerControllerScript.BombCounter-= 1;
-            Debug.Log($"Bravo, la has destruido");
             Destroy(gameObject);
             Destroy(otherTrigger.gameObject);
         }
 
-        //Si la bomba toca el suelo activamos la explosión
+        //Si la bomba toca el suelo activamos la explosión y perdemos vida
         if (otherTrigger.gameObject.CompareTag("Ground") && !PlayerControllerScript.GameOver)
         {
-            PlayerControllerScript.BombDamage -= 1;
+            //Restamos 1 vida al contador
+            PlayerControllerScript.LifeCounter -= 1;
+            //Hacemos random la explosión
             int RandomIndex = Random.Range(0, 2);
             Explosion = Instantiate(ExplosionParticleSystem[RandomIndex], transform.position, ExplosionParticleSystem[RandomIndex].transform.rotation);
             Explosion.Play();
+            //Activamos el clip de explosión
             PlayerAudioSource.PlayOneShot(ExplosionAudio, 0.1f);
+            //Destruimos la bomba
             Destroy(gameObject);
 
-            //Si caen 5 bombas, hemos perdido
-            if (PlayerControllerScript.BombDamage == 0)
+            //Si caen 5 bombas, es decir, hemos perdido toda la vida, GAMEOVER
+            if (PlayerControllerScript.LifeCounter == 0)
             {
-                Debug.Log($"GAME OVER");
                 Destroy(gameObject);
                 PlayerControllerScript.GameOver = true;
             }
